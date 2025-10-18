@@ -22,19 +22,22 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Setup Pages
-        uses: actions/configure-pages@v4
+        uses: actions/configure-pages@v5
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 20
+          cache: 'npm'
       - name: Install dependencies
-        run: npm install
+        run: npm ci
+        working-directory: ./react-pokemon-zukan
       - name: Build
-        run: npm ci && npm run build
+        run: npm run build
+        working-directory: ./react-pokemon-zukan
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './dist'
+          path: './react-pokemon-zukan/dist'
 
   deploy:
     environment:
@@ -45,4 +48,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v2
+        uses: actions/deploy-pages@v4

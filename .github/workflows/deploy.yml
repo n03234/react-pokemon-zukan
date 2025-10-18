@@ -30,14 +30,12 @@ jobs:
           cache: 'npm'
       - name: Install dependencies
         run: npm ci
-        working-directory: ./react-pokemon-zukan
       - name: Build
         run: npm run build
-        working-directory: ./react-pokemon-zukan
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './react-pokemon-zukan/dist'
+          path: './dist'
 
   deploy:
     environment:
